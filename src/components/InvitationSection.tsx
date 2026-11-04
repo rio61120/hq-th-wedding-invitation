@@ -4,9 +4,6 @@ import { FloralCorner, FloralBranchDivider, MonogramHQ } from "./Decorations";
 import { Calendar, Check, Copy, MapPin } from "lucide-react";
 
 export function InvitationSection() {
-  const [activeEvent, setActiveEvent] = useState<"wedding" | "betrothal">(
-    "wedding",
-  );
   const [copiedAddress, setCopiedAddress] = useState(false);
 
   const content = {
@@ -23,15 +20,10 @@ export function InvitationSection() {
     brideMother: "Bà Đoàn Thị Thanh Nguyệt",
     groomAddress: "Số 25 - Ngõ 1 Phú Chung, Phường Phú Sơn, Thanh Hóa",
     brideAddress: "Tổ Ngân - P. Bạch Quang, Thái Nguyên",
-    weddingTab: "Lễ thành hôn",
-    betrothalTab: "Lễ nạp tài",
     weddingTitle: "LỄ THÀNH HÔN",
-    betrothalTitle: "LỄ NẠP TÀI (LỄ ĂN HỎI)",
     month: "THÁNG MƯỜI MỘT",
     weddingWeekday: "THỨ HAI",
-    betrothalWeekday: "THỨ BẢY",
     weddingLunarDate: "Tức ngày 08 tháng 10 năm Bính Ngọ",
-    betrothalLunarDate: "Tức ngày 06 tháng 10 năm Bính Ngọ",
     at: "Vào lúc",
     venue: "TƯ GIA NHÀ TRAI",
     directions: "Chỉ đường",
@@ -42,15 +34,12 @@ export function InvitationSection() {
       "Thêm ngày vui vào lịch điện thoại để nhận thông báo nhắc hẹn",
   };
 
-  const isWedding = activeEvent === "wedding";
   const event = {
-    date: isWedding ? "16" : "14",
-    title: isWedding ? content.weddingTitle : content.betrothalTitle,
-    weekday: isWedding ? content.weddingWeekday : content.betrothalWeekday,
-    lunarDate: isWedding
-      ? content.weddingLunarDate
-      : content.betrothalLunarDate,
-    time: isWedding ? "14:00" : null,
+    date: "16",
+    title: content.weddingTitle,
+    weekday: content.weddingWeekday,
+    lunarDate: content.weddingLunarDate,
+    time: "14:00",
   };
   const address = "Số 25 - Ngõ 1 Phú Chung, Phường Phú Sơn, TP. Thanh Hóa";
   const mapUrl = `https://maps.google.com/?q=${encodeURIComponent(address)}`;
@@ -73,9 +62,7 @@ export function InvitationSection() {
       `Hân hạnh đón tiếp quý khách tới tham dự ${event.title} của Hồng Quân & Thương Huyền${event.time ? ` lúc ${event.time}` : ""}.\nĐịa chỉ: ${address}`,
     );
     // shortcut: invitation omits an end time, use a one-hour calendar block until confirmed.
-    const dates = isWedding
-      ? "20261116T070000Z/20261116T080000Z"
-      : "20261114/20261115";
+    const dates = "20261116T070000Z/20261116T080000Z";
     const googleCalUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${dates}&details=${details}&location=${encodeURIComponent(address)}`;
     window.open(googleCalUrl, "_blank");
   };
@@ -187,56 +174,7 @@ export function InvitationSection() {
 
             <div className="mt-3 pt-6">
               <div
-                role="tablist"
-                aria-label={"Chọn sự kiện"}
-                className="mx-auto flex max-w-md rounded-full border border-[#D5C2B4] bg-white/70 p-1"
-              >
-                <button
-                  id="event-tab-wedding"
-                  type="button"
-                  role="tab"
-                  aria-selected={isWedding}
-                  aria-controls="invitation-event-panel"
-                  tabIndex={isWedding ? 0 : -1}
-                  onKeyDown={(e) => {
-                    if (e.key === "ArrowRight" || e.key === "ArrowLeft") {
-                      e.preventDefault();
-                      setActiveEvent("betrothal");
-                      document.getElementById("event-tab-betrothal")?.focus();
-                    }
-                  }}
-                  onClick={() => setActiveEvent("wedding")}
-                  className={`min-h-10 flex-1 rounded-full px-3 text-sm sm:text-base font-serif italic transition-colors ${isWedding ? "bg-[#8B6F5D] text-white" : "text-[#6E5343] hover:bg-[#F4EFEB]"}`}
-                >
-                  {content.weddingTab}
-                </button>
-                <button
-                  id="event-tab-betrothal"
-                  type="button"
-                  role="tab"
-                  aria-selected={!isWedding}
-                  aria-controls="invitation-event-panel"
-                  tabIndex={!isWedding ? 0 : -1}
-                  onKeyDown={(e) => {
-                    if (e.key === "ArrowRight" || e.key === "ArrowLeft") {
-                      e.preventDefault();
-                      setActiveEvent("wedding");
-                      document.getElementById("event-tab-wedding")?.focus();
-                    }
-                  }}
-                  onClick={() => setActiveEvent("betrothal")}
-                  className={`min-h-10 flex-1 rounded-full px-3 text-sm sm:text-base font-serif italic transition-colors ${!isWedding ? "bg-[#8B6F5D] text-white" : "text-[#6E5343] hover:bg-[#F4EFEB]"}`}
-                >
-                  {content.betrothalTab}
-                </button>
-              </div>
-
-              <div
                 id="invitation-event-panel"
-                role="tabpanel"
-                aria-labelledby={
-                  isWedding ? "event-tab-wedding" : "event-tab-betrothal"
-                }
                 className="mx-auto mt-6 max-w-md"
               >
                 <h3 className="font-serif text-lg sm:text-xl tracking-[0.16em] text-[#3D3028]">

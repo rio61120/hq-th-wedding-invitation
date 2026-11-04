@@ -19,9 +19,9 @@ try {
       assert.doesNotMatch(await page.locator('#mobile-menu').innerText(), /Language|Ngôn ngữ/);
       await page.getByRole('button', { name: 'Đóng menu', exact: true }).click();
     }
-    await page.getByRole('tab', { name: 'Lễ nạp tài', exact: true }).click();
-    assert.match(await page.locator('#invitation').innerText(), /LỄ NẠP TÀI/);
-    await page.getByRole('tab', { name: 'Lễ thành hôn', exact: true }).click();
+    assert.equal(await page.getByRole('tab').count(), 0, 'Invitation event tabs are removed');
+    assert.match(await page.locator('#invitation').innerText(), /LỄ THÀNH HÔN/);
+    assert.doesNotMatch(await page.locator('#invitation').innerText(), /NẠP TÀI|ĂN HỎI/);
     await page.locator('#gallery button:has(> img)').first().click();
     await page.getByRole('dialog').locator('img').evaluate(el => el.decode());
     await page.getByRole('button', { name: 'Ảnh sau', exact: true }).click();
@@ -30,7 +30,7 @@ try {
     assert.deepEqual(errors, []);
     await page.close();
   }
-  console.log('PASS: Vietnamese only, no language controls, working invitation tabs and gallery on mobile/desktop.');
+  console.log('PASS: Vietnamese only, no language controls, wedding invitation date and gallery on mobile/desktop.');
 } finally {
   await browser.close();
 }
