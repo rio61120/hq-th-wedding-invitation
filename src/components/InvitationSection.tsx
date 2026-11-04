@@ -177,7 +177,7 @@ export function InvitationSection() {
                 id="invitation-event-panel"
                 className="mx-auto mt-6 max-w-md"
               >
-                <h3 className="font-serif text-lg sm:text-xl tracking-[0.16em] text-[#3D3028]">
+                <h3 className="font-serif text-2xl sm:text-3xl tracking-[0.16em] text-[#3D3028]">
                   {event.title}
                   {event.time && (
                     <span className="mt-1 block text-sm tracking-normal text-[#6E5343]">
