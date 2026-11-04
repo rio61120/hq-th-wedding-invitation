@@ -1,0 +1,6 @@
+{
+  "name": "Thiệp Cưới Hồng Quân & Thương Huyền",
+  "description": "Thiệp cưới online phong cách Modern Minimal tối giản, thanh lịch, tinh tế và nghệ thuật của Hồng Quân & Thương Huyền.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
