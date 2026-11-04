@@ -1,25 +1,17 @@
 import type { Metadata, Viewport } from 'next';
 import type { ReactNode } from 'react';
+import { siteUrl } from './site-url';
 import '../src/index.css';
 
 const title = 'Thiệp cưới Hồng Quân & Thương Huyền | 2026';
 const description = 'Trân trọng kính mời bạn đến chung vui cùng Hồng Quân và Thương Huyền. Xem lịch cưới, địa điểm và xác nhận tham dự.';
 const shareImage = { url: '/assets/wedding-share.jpg', width: 1200, height: 818, alt: 'Hồng Quân và Thương Huyền' };
-const siteUrlValue = process.env.NEXT_PUBLIC_SITE_URL || process.env.APP_URL;
-const siteUrl = (() => {
-  try {
-    return siteUrlValue ? new URL(siteUrlValue) : undefined;
-  } catch {
-    return undefined;
-  }
-})();
-
 export const metadata: Metadata = {
   metadataBase: siteUrl,
   title,
   description,
   applicationName: 'Thiệp cưới Hồng Quân & Thương Huyền',
-  alternates: siteUrl ? { canonical: '/' } : undefined,
+  alternates: { canonical: '/' },
   robots: {
     index: true,
     follow: true,
@@ -31,13 +23,14 @@ export const metadata: Metadata = {
     siteName: 'Thiệp cưới Hồng Quân & Thương Huyền',
     locale: 'vi_VN',
     type: 'website',
-    ...(siteUrl ? { url: '/', images: [shareImage] } : {}),
+    url: '/',
+    images: [shareImage],
   },
   twitter: {
     card: 'summary_large_image',
     title,
     description,
-    ...(siteUrl ? { images: [shareImage] } : {}),
+    images: [shareImage],
   },
 };
 
