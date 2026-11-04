@@ -45,7 +45,7 @@ export default function App() {
         if (!scrollActive) return;
         const endY = Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
         const frameTime = previousFrame ? Math.min(now - previousFrame, 50) : 0;
-        const nextY = reducedMotion ? endY : Math.min(endY, window.scrollY + frameTime * 0.3);
+        const nextY = reducedMotion ? endY : Math.min(endY, window.scrollY + frameTime * 0.1);
         window.scrollTo({ top: nextY, behavior: 'instant' });
         previousFrame = now;
 
@@ -156,11 +156,11 @@ export default function App() {
           if (!autoScroll) startImmediately.current = true;
           setAutoScroll((enabled) => !enabled);
         }}
-        className="fixed bottom-[calc(1rem+env(safe-area-inset-bottom))] left-3 sm:bottom-6 sm:left-auto sm:right-44 z-50 inline-flex h-11 w-[5.5rem] items-center justify-center gap-2.5 rounded-full border border-[#BCA89F]/50 bg-[#FFFCF8]/95 px-2 text-[#5A4537] shadow-[0_6px_24px_rgba(80,59,45,0.15)] backdrop-blur-md transition-all hover:-translate-y-0.5 hover:border-[#8B6F5D] hover:shadow-[0_9px_28px_rgba(80,59,45,0.2)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#8B6F5D]"
+        className="fixed right-3 bottom-[calc(7.75rem+env(safe-area-inset-bottom))] z-50 inline-flex h-20 w-11 flex-col items-center justify-center gap-2 rounded-full border border-[#BCA89F]/50 bg-[#FFFCF8]/95 p-1 text-[#5A4537] shadow-[0_6px_24px_rgba(80,59,45,0.15)] backdrop-blur-md transition-all hover:border-[#8B6F5D] hover:shadow-[0_9px_28px_rgba(80,59,45,0.2)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#8B6F5D] sm:right-6 sm:bottom-[4.75rem]"
       >
         <ArrowDown aria-hidden="true" className="h-4 w-4 shrink-0 text-[#8B6F5D]" />
-        <span aria-hidden="true" className={`inline-flex h-6 w-11 shrink-0 items-center rounded-full border p-px transition-colors duration-300 ${autoScroll ? 'border-[#8B6F5D] bg-[#8B6F5D]' : 'border-[#C5B8AD] bg-[#D8CCC0]'}`}>
-          <span className={`h-5 w-5 rounded-full bg-white shadow-sm transition-transform duration-300 ease-out ${autoScroll ? 'translate-x-5' : 'translate-x-0'}`} />
+        <span aria-hidden="true" className={`inline-flex h-11 w-6 shrink-0 items-start justify-center rounded-full border p-px transition-colors duration-300 ${autoScroll ? 'border-[#8B6F5D] bg-[#8B6F5D]' : 'border-[#C5B8AD] bg-[#D8CCC0]'}`}>
+          <span className={`h-5 w-5 rounded-full bg-white shadow-sm transition-transform duration-300 ease-out ${autoScroll ? 'translate-y-5' : 'translate-y-0'}`} />
         </span>
       </button>
 

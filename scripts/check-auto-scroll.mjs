@@ -59,15 +59,17 @@ try {
     const track = button.children[1].getBoundingClientRect();
     const knob = button.children[1].firstElementChild.getBoundingClientRect();
     return {
-      buttonCenter: button.getBoundingClientRect().top + button.getBoundingClientRect().height / 2,
-      iconCenter: icon.top + icon.height / 2,
-      trackCenter: track.top + track.height / 2,
-      knobCenter: knob.top + knob.height / 2,
+      buttonCenter: button.getBoundingClientRect().left + button.getBoundingClientRect().width / 2,
+      iconCenter: icon.left + icon.width / 2,
+      trackCenter: track.left + track.width / 2,
+      knobCenter: knob.left + knob.width / 2,
+      iconBottom: icon.bottom,
+      trackTop: track.top,
     };
   });
-  assert.ok(Math.max(Math.abs(switchAlignment.buttonCenter - switchAlignment.iconCenter), Math.abs(switchAlignment.buttonCenter - switchAlignment.trackCenter), Math.abs(switchAlignment.buttonCenter - switchAlignment.knobCenter)) < 1, 'Switch icon, track, knob, and trigger are vertically aligned');
+  assert.ok(Math.max(Math.abs(switchAlignment.buttonCenter - switchAlignment.iconCenter), Math.abs(switchAlignment.buttonCenter - switchAlignment.trackCenter), Math.abs(switchAlignment.buttonCenter - switchAlignment.knobCenter)) < 1 && switchAlignment.iconBottom < switchAlignment.trackTop, 'Switch icon and vertical track are aligned');
   const maxScroll = await page.evaluate(() => document.documentElement.scrollHeight - innerHeight);
-  await page.waitForFunction(() => document.querySelector('[data-auto-scroll-toggle]')?.getAttribute('aria-checked') === 'false', undefined, { timeout: Math.ceil(5000 + maxScroll / 0.3 + 5000) });
+  await page.waitForFunction(() => document.querySelector('[data-auto-scroll-toggle]')?.getAttribute('aria-checked') === 'false', undefined, { timeout: Math.ceil(5000 + maxScroll / 0.1 + 5000) });
   const finalPosition = await page.evaluate(() => ({ y: scrollY, max: document.documentElement.scrollHeight - innerHeight }));
   assert.ok(Math.abs(finalPosition.y - finalPosition.max) <= 1, `Auto scroll reaches the page end; scrollY=${finalPosition.y}, max=${finalPosition.max}`);
   await page.close();

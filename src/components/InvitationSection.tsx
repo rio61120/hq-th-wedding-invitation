@@ -35,9 +35,9 @@ export function InvitationSection() {
     at: "Vào lúc",
     venue: "TƯ GIA NHÀ TRAI",
     directions: "Chỉ đường",
-    copyAddress: "Sao chép địa chỉ",
-    copiedAddress: "Đã sao chép địa chỉ",
-    calendarBtn: "Lưu vào Lịch (Google / Apple)",
+    copyAddress: "Sao chép",
+    copiedAddress: "Đã sao chép",
+    calendarBtn: "Lưu vào Lịch",
     calendarDesc:
       "Thêm ngày vui vào lịch điện thoại để nhận thông báo nhắc hẹn",
   };
@@ -298,7 +298,7 @@ export function InvitationSection() {
                   </p>
                 </div>
 
-                <div className="mt-4 flex flex-wrap justify-center gap-2">
+                <div className="mt-4 flex justify-center gap-2">
                   <a
                     href={mapUrl}
                     target="_blank"
