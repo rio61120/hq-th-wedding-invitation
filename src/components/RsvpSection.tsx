@@ -83,7 +83,7 @@ export function RsvpSection() {
   };
 
   return (
-    <section id="rsvp" className="py-20 bg-[#FAF7F2] relative">
+    <section id="rsvp" className="py-20 bg-[#F4EFEB] relative">
       <div className="max-w-2xl mx-auto px-6">
         {/* XÁC NHẬN THAM DỰ Card with clean, sharp design */}
         <motion.div

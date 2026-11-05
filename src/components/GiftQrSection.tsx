@@ -17,7 +17,7 @@ const giftQrs = [
 
 export function GiftQrSection() {
   return (
-    <section id="gift" className="relative bg-[#F4EFEB] py-20">
+    <section id="gift" className="relative bg-[#FAF7F2] py-20">
       <div className="mx-auto max-w-5xl px-6">
         <motion.header
           initial={{ opacity: 0, y: 20 }}
@@ -39,7 +39,7 @@ export function GiftQrSection() {
           <FloralBranchDivider className="mx-auto mt-5 w-40 opacity-80" />
         </motion.header>
 
-        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-6">
+        <div className="flex flex-nowrap gap-2 sm:gap-6">
           {giftQrs.map((qr, index) => (
             <motion.article
               key={qr.src}
@@ -47,12 +47,12 @@ export function GiftQrSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.15 }}
               transition={{ duration: 0.65, delay: index * 0.12 }}
-              className="rounded-3xl border border-[#D5C2B4] bg-[#FAF7F2] p-4 shadow-sm sm:p-6"
+              className="min-w-0 flex-1 rounded-2xl border border-[#D5C2B4] bg-[#F4EFEB] p-2 shadow-sm sm:rounded-3xl sm:p-6"
             >
-              <h3 className="mb-4 text-center font-serif text-lg text-[#5A4537] sm:text-xl">
+              <h3 className="mb-2 text-center font-serif text-sm text-[#5A4537] sm:mb-4 sm:text-xl">
                 {qr.title}
               </h3>
-              <div className="mx-auto max-w-md overflow-hidden rounded-2xl border border-[#EEE5DC] bg-white p-2">
+              <div className="mx-auto max-w-md overflow-hidden rounded-xl border border-[#EEE5DC] bg-white p-1 sm:rounded-2xl sm:p-2">
                 <img
                   src={qr.src}
                   alt={qr.alt}
@@ -61,7 +61,7 @@ export function GiftQrSection() {
                   className="block h-auto w-full object-contain"
                 />
               </div>
-              <p className="mt-4 text-center text-[10px] font-medium uppercase tracking-[0.2em] text-[#A68A78]">
+              <p className="mt-2 text-center text-[8px] font-medium uppercase tracking-[0.12em] text-[#A68A78] sm:mt-4 sm:text-[10px] sm:tracking-[0.2em]">
                 Quét mã để gửi lời chúc
               </p>
             </motion.article>

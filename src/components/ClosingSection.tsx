@@ -17,7 +17,7 @@ export function ClosingSection() {
   return (
     <section
       id="closing"
-      className="py-24 bg-[#F4EFEB] relative overflow-hidden"
+      className="py-24 bg-[#FAF7F2] relative overflow-hidden"
     >
       {/* Top-Right Botanical Blossom PNG Decor matching sketch 11 */}
       <div className="absolute -top-6 -right-6 sm:-top-8 sm:-right-8 w-48 h-48 sm:w-64 sm:h-64 lg:w-80 lg:h-80 pointer-events-none select-none z-0">
