@@ -52,13 +52,13 @@ export function GiftQrSection() {
               <h3 className="mb-4 text-center font-serif text-lg text-[#5A4537] sm:text-xl">
                 {qr.title}
               </h3>
-              <div className="mx-auto aspect-[3/2] max-w-md overflow-hidden rounded-2xl border border-[#EEE5DC] bg-white">
+              <div className="mx-auto max-w-md overflow-hidden rounded-2xl border border-[#EEE5DC] bg-white p-2">
                 <img
                   src={qr.src}
                   alt={qr.alt}
                   loading="lazy"
                   decoding="async"
-                  className="block h-auto w-full"
+                  className="block h-auto w-full object-contain"
                 />
               </div>
               <p className="mt-4 text-center text-[10px] font-medium uppercase tracking-[0.2em] text-[#A68A78]">
