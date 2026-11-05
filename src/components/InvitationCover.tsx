@@ -68,7 +68,7 @@ export function InvitationCover({
 
   return (
     <motion.main
-      className="fixed inset-0 z-[100] bg-[#FAF7F2]"
+      className="fixed inset-0 z-[100] flex justify-center bg-[#FAF7F2] lg:bg-[#241a16]/55 lg:backdrop-blur-[3px]"
       role="dialog"
       aria-modal="true"
       aria-labelledby="personal-invitation-title"
@@ -76,7 +76,7 @@ export function InvitationCover({
       transition={{ duration: 0.55, delay: isOpening ? 0.2 : 0 }}
     >
       <motion.section
-        className="relative flex h-[100dvh] w-full flex-col overflow-hidden rounded-none bg-[#FAF7F2]"
+        className="relative flex h-[100dvh] w-full flex-col overflow-hidden rounded-none bg-[#FAF7F2] lg:w-1/3 lg:shadow-[0_0_80px_rgba(31,20,14,0.3)]"
         aria-label="Thiệp mời cưới"
       >
         <motion.div
