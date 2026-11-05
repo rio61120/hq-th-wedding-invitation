@@ -162,8 +162,8 @@ export function InvitationSection() {
             </div>
 
             {/* Parents Information */}
-            <div className="mx-auto grid max-w-xl grid-cols-1 gap-4 border-t border-[#BCA89F]/20 pt-6 text-xs text-[#5A4537] sm:grid-cols-2 sm:gap-6 sm:text-sm">
-              <div className="space-y-1">
+            <div className="mx-auto flex max-w-xl flex-nowrap gap-2 border-t border-[#BCA89F]/20 pt-6 text-xs text-[#5A4537] sm:gap-6 sm:text-sm">
+              <div className="min-w-0 flex-1 space-y-1">
                 <p className="font-medium uppercase tracking-wider text-[#8B6F5D] text-[11px]">
                   {content.groomSide}
                 </p>
@@ -176,7 +176,7 @@ export function InvitationSection() {
                 </p>
               </div>
 
-              <div className="space-y-1">
+              <div className="min-w-0 flex-1 space-y-1">
                 <p className="font-medium uppercase tracking-wider text-[#8B6F5D] text-[11px]">
                   {content.brideSide}
                 </p>
