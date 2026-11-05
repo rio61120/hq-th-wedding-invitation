@@ -116,32 +116,34 @@ export function InvitationCover({
         </motion.div>
 
         <motion.div
-          className="relative flex min-h-0 flex-[2] flex-col items-center justify-center overflow-y-auto px-5 py-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))] text-center sm:px-10 sm:py-4"
+          className="relative flex min-h-0 flex-[2] flex-col items-center justify-start overflow-y-auto px-5 py-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))] text-center sm:px-10 sm:py-4"
           animate={isOpening ? { y: '110%' } : { y: 0 }}
           transition={{ duration: 0.72, ease: [0.76, 0, 0.24, 1] }}
         >
           <MonogramHQ className="mb-2 h-10 w-10 sm:mb-3 sm:h-12 sm:w-12" />
-          <h1 className="leading-none" id="personal-invitation-title">
-            <span className="block font-script text-4xl text-[#3D3028] sm:text-6xl">Hồng Quân</span>
-            <span className="my-0.5 block font-serif text-xl italic font-light text-[#8B6F5D] sm:text-2xl">&amp;</span>
-            <span className="block font-script text-4xl text-[#3D3028] sm:text-6xl">Thương Huyền</span>
+          <h1 className="flex shrink-0 items-baseline justify-center gap-1 whitespace-nowrap leading-none sm:gap-2" id="personal-invitation-title">
+            <span className="font-script text-[clamp(1.5rem,6vw,3rem)] text-[#3D3028]">Hồng Quân</span>
+            <span className="font-serif text-base italic font-light text-[#8B6F5D] sm:text-2xl">&amp;</span>
+            <span className="font-script text-[clamp(1.5rem,6vw,3rem)] text-[#3D3028]">Thương Huyền</span>
           </h1>
-          <p className="mt-2 text-[10px] font-medium uppercase tracking-[0.28em] text-[#98735D] sm:text-xs">
+          <p className="mt-2 shrink-0 text-[10px] font-medium uppercase tracking-[0.28em] text-[#98735D] sm:text-xs">
             Trân trọng kính mời
           </p>
-          <p className="mt-1 max-w-full truncate font-serif text-xl text-[#3D3028] sm:text-2xl" title={invitedName}>
+          <p className="mt-1 max-w-full shrink-0 break-words font-serif text-xl leading-tight text-[#3D3028] sm:text-2xl" title={invitedName}>
             {invitedName}
           </p>
           <button
             type="button"
             disabled={isOpening}
             onClick={() => setIsOpening(true)}
-            className="mt-4 inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-[#8B6F5D] px-7 py-3 text-sm font-medium text-white shadow-[0_8px_22px_rgba(91,66,49,0.22)] transition hover:bg-[#745744] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#8B6F5D] disabled:cursor-wait sm:mt-5"
+            className="mt-4 inline-flex min-h-12 shrink-0 items-center justify-center gap-2 rounded-full bg-[#8B6F5D] px-7 py-3 text-sm font-medium text-white shadow-[0_8px_22px_rgba(91,66,49,0.22)] transition hover:bg-[#745744] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#8B6F5D] disabled:cursor-wait sm:mt-5"
           >
             <MailOpen aria-hidden="true" className="h-4 w-4" />
             Xem thiệp
           </button>
-          <FloralBranchDivider className="mt-2 h-auto w-40 opacity-90 sm:mt-3 sm:w-56" />
+          <div className="mt-2 w-full shrink-0 sm:mt-3">
+            <FloralBranchDivider className="h-auto w-40 opacity-90 sm:w-56" />
+          </div>
         </motion.div>
       </motion.section>
     </motion.main>
