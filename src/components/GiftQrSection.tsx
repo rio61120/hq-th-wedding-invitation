@@ -49,16 +49,16 @@ export function GiftQrSection() {
               transition={{ duration: 0.65, delay: index * 0.12 }}
               className="min-w-0 flex-1 rounded-2xl border border-[#D5C2B4] bg-[#F4EFEB] p-2 shadow-sm sm:rounded-3xl sm:p-6"
             >
-              <h3 className="mb-2 text-center font-serif text-sm text-[#5A4537] sm:mb-4 sm:text-xl">
+              <h3 className="mb-2 flex h-10 items-center justify-center text-center font-serif text-sm leading-tight text-[#5A4537] sm:mb-4 sm:h-7 sm:text-xl">
                 {qr.title}
               </h3>
-              <div className="mx-auto max-w-md overflow-hidden rounded-xl border border-[#EEE5DC] bg-white p-1 sm:rounded-2xl sm:p-2">
+              <div className="mx-auto aspect-square w-full max-w-md overflow-hidden rounded-xl border border-[#EEE5DC] bg-white p-1 sm:rounded-2xl sm:p-2">
                 <img
                   src={qr.src}
                   alt={qr.alt}
                   loading="lazy"
                   decoding="async"
-                  className="block h-auto w-full object-contain"
+                  className="block h-full w-full object-contain"
                 />
               </div>
               <p className="mt-2 text-center text-[8px] font-medium uppercase tracking-[0.12em] text-[#A68A78] sm:mt-4 sm:text-[10px] sm:tracking-[0.2em]">
