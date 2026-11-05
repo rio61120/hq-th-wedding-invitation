@@ -22,9 +22,9 @@ export function InvitationSection() {
     groomAddress: "Số 25 - Ngõ 1 Phú Chung, Phường Phú Sơn, Thanh Hóa",
     brideAddress: "Tổ Ngân, Phường Bách Quang, Thái Nguyên",
     weddingTab: "Lễ thành hôn",
-    vuQuyTab: "Nạp tài vu quy",
+    vuQuyTab: "Lễ Vu quy",
     weddingTitle: "LỄ THÀNH HÔN",
-    vuQuyTitle: "NẠP TÀI VU QUY",
+    vuQuyTitle: "LỄ VU QUY",
     month: "THÁNG MƯỜI MỘT",
     weddingWeekday: "THỨ HAI",
     weddingLunarDate: "Tức ngày 08 tháng 10 năm Bính Ngọ",
@@ -49,7 +49,7 @@ export function InvitationSection() {
     title: isWedding ? content.weddingTitle : content.vuQuyTitle,
     weekday: content.weddingWeekday,
     lunarDate: content.weddingLunarDate,
-    time: isWedding ? "14:00" : null,
+    time: isWedding ? "14:00" : "7:00",
     venue: isWedding ? content.groomVenue : content.brideVenue,
   };
   const address = isWedding
@@ -77,10 +77,10 @@ export function InvitationSection() {
     const details = encodeURIComponent(
       `Hân hạnh đón tiếp quý khách tới tham dự ${event.title} của Hồng Quân & Thương Huyền${event.time ? ` lúc ${event.time}` : ""}.\nĐịa chỉ: ${address}`,
     );
-    // Wedding uses a one-hour block; vu quy has no confirmed time, so add it as an all-day event.
+    // The invitation omits end times, so calendar entries use one-hour blocks.
     const dates = isWedding
       ? "20261116T070000Z/20261116T080000Z"
-      : "20261116/20261117";
+      : "20261116T000000Z/20261116T010000Z";
     const googleCalUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${dates}&details=${details}&location=${encodeURIComponent(address)}`;
     window.open(googleCalUrl, "_blank");
   };
