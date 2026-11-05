@@ -68,7 +68,7 @@ export function InvitationCover({
 
   return (
     <motion.main
-      className="fixed inset-0 z-[100] flex justify-center bg-[#FAF7F2] lg:bg-[#241a16]/55 lg:backdrop-blur-[3px]"
+      className="fixed inset-0 z-[100] flex justify-center bg-[#FAF7F2] lg:bg-white"
       role="dialog"
       aria-modal="true"
       aria-labelledby="personal-invitation-title"
