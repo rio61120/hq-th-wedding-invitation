@@ -10,6 +10,7 @@ import { StorySection } from './components/StorySection';
 import { CountdownSection } from './components/CountdownSection';
 import { GallerySection } from './components/GallerySection';
 import { LocationSection } from './components/LocationSection';
+import { GiftQrSection } from './components/GiftQrSection';
 import { RsvpSection } from './components/RsvpSection';
 import { ClosingSection } from './components/ClosingSection';
 import { MusicPlayer, MusicPlayerHandle } from './components/MusicPlayer';
@@ -138,6 +139,9 @@ export default function App() {
 
         {/* LOCATION - Địa điểm & chỉ đường */}
         <LocationSection />
+
+        {/* GIFT QR - Hộp mừng cưới */}
+        <GiftQrSection />
 
         {/* RSVP - Xác nhận tham dự */}
         <RsvpSection />
