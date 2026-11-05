@@ -4,6 +4,7 @@ import { FloralCorner, FloralBranchDivider, MonogramHQ } from "./Decorations";
 import { Calendar, Check, Copy, MapPin } from "lucide-react";
 
 export function InvitationSection() {
+  const [activeEvent, setActiveEvent] = useState<"wedding" | "vuQuy">("wedding");
   const [copiedAddress, setCopiedAddress] = useState(false);
 
   const content = {
@@ -19,13 +20,17 @@ export function InvitationSection() {
     brideFather: "Ông Nguyễn Văn Cường",
     brideMother: "Bà Đoàn Thị Thanh Nguyệt",
     groomAddress: "Số 25 - Ngõ 1 Phú Chung, Phường Phú Sơn, Thanh Hóa",
-    brideAddress: "Tổ Ngân - P. Bạch Quang, Thái Nguyên",
+    brideAddress: "Tổ Ngân, Phường Bách Quang, Thái Nguyên",
+    weddingTab: "Lễ thành hôn",
+    vuQuyTab: "Nạp tài thành vu quy",
     weddingTitle: "LỄ THÀNH HÔN",
+    vuQuyTitle: "NẠP TÀI THÀNH VU QUY",
     month: "THÁNG MƯỜI MỘT",
     weddingWeekday: "THỨ HAI",
     weddingLunarDate: "Tức ngày 08 tháng 10 năm Bính Ngọ",
     at: "Vào lúc",
-    venue: "TƯ GIA NHÀ TRAI",
+    groomVenue: "TƯ GIA NHÀ TRAI",
+    brideVenue: "TƯ GIA NHÀ GÁI",
     directions: "Chỉ đường",
     copyAddress: "Sao chép",
     copiedAddress: "Đã sao chép",
@@ -34,15 +39,22 @@ export function InvitationSection() {
       "Thêm ngày vui vào lịch điện thoại để nhận thông báo nhắc hẹn",
   };
 
+  const isWedding = activeEvent === "wedding";
   const event = {
     date: "16",
-    title: content.weddingTitle,
+    title: isWedding ? content.weddingTitle : content.vuQuyTitle,
     weekday: content.weddingWeekday,
     lunarDate: content.weddingLunarDate,
-    time: "14:00",
+    time: isWedding ? "14:00" : null,
+    venue: isWedding ? content.groomVenue : content.brideVenue,
   };
-  const address = "Số 25 - Ngõ 1 Phú Chung, Phường Phú Sơn, TP. Thanh Hóa";
-  const mapUrl = `https://maps.google.com/?q=${encodeURIComponent(address)}`;
+  const address = isWedding
+    ? "Số 25 - Ngõ 1 Phú Chung, Phường Phú Sơn, TP. Thanh Hóa"
+    : content.brideAddress;
+  const mapQuery = isWedding
+    ? address
+    : String.raw`21°30'29.9"N 105°52'41.1"E`;
+  const mapUrl = `https://maps.google.com/?q=${encodeURIComponent(mapQuery)}`;
 
   const handleCopyAddress = async () => {
     try {
@@ -61,8 +73,10 @@ export function InvitationSection() {
     const details = encodeURIComponent(
       `Hân hạnh đón tiếp quý khách tới tham dự ${event.title} của Hồng Quân & Thương Huyền${event.time ? ` lúc ${event.time}` : ""}.\nĐịa chỉ: ${address}`,
     );
-    // shortcut: invitation omits an end time, use a one-hour calendar block until confirmed.
-    const dates = "20261116T070000Z/20261116T080000Z";
+    // Wedding uses a one-hour block; vu quy has no confirmed time, so add it as an all-day event.
+    const dates = isWedding
+      ? "20261116T070000Z/20261116T080000Z"
+      : "20261116/20261117";
     const googleCalUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${dates}&details=${details}&location=${encodeURIComponent(address)}`;
     window.open(googleCalUrl, "_blank");
   };
@@ -174,10 +188,57 @@ export function InvitationSection() {
 
             <div className="mt-3 pt-6">
               <div
+                role="tablist"
+                aria-label="Chọn sự kiện"
+                className="mx-auto flex max-w-lg rounded-full border border-[#D5C2B4] bg-white/70 p-1"
+              >
+                <button
+                  id="event-tab-wedding"
+                  type="button"
+                  role="tab"
+                  aria-selected={isWedding}
+                  aria-controls="invitation-event-panel"
+                  tabIndex={isWedding ? 0 : -1}
+                  onKeyDown={(event) => {
+                    if (event.key === "ArrowRight" || event.key === "ArrowLeft") {
+                      event.preventDefault();
+                      setActiveEvent("vuQuy");
+                      document.getElementById("event-tab-vu-quy")?.focus();
+                    }
+                  }}
+                  onClick={() => setActiveEvent("wedding")}
+                  className={`min-h-11 flex-1 rounded-full px-2 text-xs font-serif italic transition-colors sm:px-3 sm:text-base ${isWedding ? "bg-[#8B6F5D] text-white" : "text-[#6E5343] hover:bg-[#F4EFEB]"}`}
+                >
+                  {content.weddingTab}
+                </button>
+                <button
+                  id="event-tab-vu-quy"
+                  type="button"
+                  role="tab"
+                  aria-selected={!isWedding}
+                  aria-controls="invitation-event-panel"
+                  tabIndex={!isWedding ? 0 : -1}
+                  onKeyDown={(event) => {
+                    if (event.key === "ArrowRight" || event.key === "ArrowLeft") {
+                      event.preventDefault();
+                      setActiveEvent("wedding");
+                      document.getElementById("event-tab-wedding")?.focus();
+                    }
+                  }}
+                  onClick={() => setActiveEvent("vuQuy")}
+                  className={`min-h-11 flex-1 rounded-full px-2 text-xs font-serif italic transition-colors sm:px-3 sm:text-base ${!isWedding ? "bg-[#8B6F5D] text-white" : "text-[#6E5343] hover:bg-[#F4EFEB]"}`}
+                >
+                  {content.vuQuyTab}
+                </button>
+              </div>
+
+              <div
                 id="invitation-event-panel"
+                role="tabpanel"
+                aria-labelledby={isWedding ? "event-tab-wedding" : "event-tab-vu-quy"}
                 className="mx-auto mt-6 max-w-md"
               >
-                <h3 className="font-serif text-2xl sm:text-3xl tracking-[0.16em] text-[#3D3028]">
+                <h3 className="font-serif text-xl tracking-[0.1em] text-[#3D3028] sm:text-3xl sm:tracking-[0.12em]">
                   {event.title}
                   {event.time && (
                     <span className="mt-1 block text-sm tracking-normal text-[#6E5343]">
@@ -229,7 +290,7 @@ export function InvitationSection() {
                     aria-hidden="true"
                   />
                   <p className="font-serif text-sm font-medium tracking-[0.15em] text-[#8B6F5D]">
-                    {content.venue}
+                    {event.venue}
                   </p>
                   <p className="text-xs leading-relaxed text-[#6E5343]">
                     {address}

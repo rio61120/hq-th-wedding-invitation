@@ -19,9 +19,13 @@ try {
       assert.doesNotMatch(await page.locator('#mobile-menu').innerText(), /Language|Ngôn ngữ/);
       await page.getByRole('button', { name: 'Đóng menu', exact: true }).click();
     }
-    assert.equal(await page.getByRole('tab').count(), 0, 'Invitation event tabs are removed');
+    assert.equal(await page.getByRole('tab').count(), 2, 'Invitation event tabs are available');
     assert.match(await page.locator('#invitation').innerText(), /LỄ THÀNH HÔN/);
-    assert.doesNotMatch(await page.locator('#invitation').innerText(), /NẠP TÀI|ĂN HỎI/);
+    await page.getByRole('tab', { name: 'Nạp tài thành vu quy', exact: true }).click();
+    assert.match(await page.locator('#invitation').innerText(), /NẠP TÀI THÀNH VU QUY/);
+    assert.match(await page.locator('#invitation').innerText(), /Phường Bách Quang, Thái Nguyên/);
+    assert.match(await page.getByRole('link', { name: 'Chỉ đường' }).getAttribute('href'), /21%C2%B030/);
+    await page.getByRole('tab', { name: 'Lễ thành hôn', exact: true }).click();
     await page.locator('#gallery button:has(> img)').first().click();
     await page.getByRole('dialog').locator('img').evaluate(el => el.decode());
     await page.getByRole('button', { name: 'Ảnh sau', exact: true }).click();
@@ -30,7 +34,7 @@ try {
     assert.deepEqual(errors, []);
     await page.close();
   }
-  console.log('PASS: Vietnamese only, no language controls, wedding invitation date and gallery on mobile/desktop.');
+  console.log('PASS: Vietnamese invitation tabs, no language controls, and gallery on mobile/desktop.');
 } finally {
   await browser.close();
 }
