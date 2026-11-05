@@ -89,7 +89,7 @@ export function InvitationCover({
               key={activePhoto}
               src={photos[activePhoto]}
               alt={`Ảnh cưới Hồng Quân và Thương Huyền ${activePhoto + 1}`}
-              className="absolute inset-0 h-full w-full object-cover object-center"
+              className="absolute inset-0 h-full w-full object-cover object-center lg:object-top"
               initial={{ opacity: 0, scale: 1.035 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 1.015 }}
