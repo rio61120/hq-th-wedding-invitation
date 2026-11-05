@@ -162,12 +162,12 @@ export function InvitationSection() {
             </div>
 
             {/* Parents Information */}
-            <div className="mx-auto grid max-w-xl grid-cols-1 gap-4 border-t border-[#BCA89F]/20 pt-6 text-xs text-[#5A4537] min-[380px]:grid-cols-2 sm:gap-6 sm:text-sm">
+            <div className="mx-auto grid max-w-xl grid-cols-1 gap-4 border-t border-[#BCA89F]/20 pt-6 text-xs text-[#5A4537] sm:grid-cols-2 sm:gap-6 sm:text-sm">
               <div className="space-y-1">
                 <p className="font-medium uppercase tracking-wider text-[#8B6F5D] text-[11px]">
                   {content.groomSide}
                 </p>
-                <p className="font-serif text-sm text-[#3D3028] min-[380px]:text-xs sm:text-base">
+                <p className="font-serif text-base text-[#3D3028]">
                   <span className="block whitespace-nowrap">{content.groomFather}</span>
                   <span className="block whitespace-nowrap">{content.groomMother}</span>
                 </p>
@@ -180,7 +180,7 @@ export function InvitationSection() {
                 <p className="font-medium uppercase tracking-wider text-[#8B6F5D] text-[11px]">
                   {content.brideSide}
                 </p>
-                <p className="font-serif text-sm text-[#3D3028] min-[380px]:text-xs sm:text-base">
+                <p className="font-serif text-base text-[#3D3028]">
                   <span className="block whitespace-nowrap">{content.brideFather}</span>
                   <span className="block whitespace-nowrap">{content.brideMother}</span>
                 </p>
