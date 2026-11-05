@@ -22,9 +22,9 @@ export function InvitationSection() {
     groomAddress: "Số 25 - Ngõ 1 Phú Chung, Phường Phú Sơn, Thanh Hóa",
     brideAddress: "Tổ Ngân, Phường Bách Quang, Thái Nguyên",
     weddingTab: "Lễ thành hôn",
-    vuQuyTab: "Nạp tài thành vu quy",
+    vuQuyTab: "Nạp tài vu quy",
     weddingTitle: "LỄ THÀNH HÔN",
-    vuQuyTitle: "NẠP TÀI THÀNH VU QUY",
+    vuQuyTitle: "NẠP TÀI VU QUY",
     month: "THÁNG MƯỜI MỘT",
     weddingWeekday: "THỨ HAI",
     weddingLunarDate: "Tức ngày 08 tháng 10 năm Bính Ngọ",
@@ -40,6 +40,10 @@ export function InvitationSection() {
   };
 
   const isWedding = activeEvent === "wedding";
+  const eventDirection = isWedding ? -1 : 1;
+  const changeEvent = (nextEvent: "wedding" | "vuQuy") => {
+    if (nextEvent !== activeEvent) setActiveEvent(nextEvent);
+  };
   const event = {
     date: "16",
     title: isWedding ? content.weddingTitle : content.vuQuyTitle,
@@ -202,12 +206,12 @@ export function InvitationSection() {
                   onKeyDown={(event) => {
                     if (event.key === "ArrowRight" || event.key === "ArrowLeft") {
                       event.preventDefault();
-                      setActiveEvent("vuQuy");
+                      changeEvent("vuQuy");
                       document.getElementById("event-tab-vu-quy")?.focus();
                     }
                   }}
-                  onClick={() => setActiveEvent("wedding")}
-                  className={`min-h-11 flex-1 rounded-full px-2 text-xs font-serif italic transition-colors sm:px-3 sm:text-base ${isWedding ? "bg-[#8B6F5D] text-white" : "text-[#6E5343] hover:bg-[#F4EFEB]"}`}
+                  onClick={() => changeEvent("wedding")}
+                  className={`min-h-11 flex-1 rounded-full px-2 text-sm font-serif italic transition-colors sm:px-3 sm:text-lg ${isWedding ? "bg-[#8B6F5D] text-white" : "text-[#6E5343] hover:bg-[#F4EFEB]"}`}
                 >
                   {content.weddingTab}
                 </button>
@@ -221,24 +225,46 @@ export function InvitationSection() {
                   onKeyDown={(event) => {
                     if (event.key === "ArrowRight" || event.key === "ArrowLeft") {
                       event.preventDefault();
-                      setActiveEvent("wedding");
+                      changeEvent("wedding");
                       document.getElementById("event-tab-wedding")?.focus();
                     }
                   }}
-                  onClick={() => setActiveEvent("vuQuy")}
-                  className={`min-h-11 flex-1 rounded-full px-2 text-xs font-serif italic transition-colors sm:px-3 sm:text-base ${!isWedding ? "bg-[#8B6F5D] text-white" : "text-[#6E5343] hover:bg-[#F4EFEB]"}`}
+                  onClick={() => changeEvent("vuQuy")}
+                  className={`min-h-11 flex-1 rounded-full px-2 text-sm font-serif italic transition-colors sm:px-3 sm:text-lg ${!isWedding ? "bg-[#8B6F5D] text-white" : "text-[#6E5343] hover:bg-[#F4EFEB]"}`}
                 >
                   {content.vuQuyTab}
                 </button>
               </div>
 
-              <div
-                id="invitation-event-panel"
-                role="tabpanel"
-                aria-labelledby={isWedding ? "event-tab-wedding" : "event-tab-vu-quy"}
-                className="mx-auto mt-6 max-w-md"
+              <AnimatePresence
+                mode="wait"
+                initial={false}
+                custom={eventDirection}
               >
-                <h3 className="font-serif text-xl tracking-[0.1em] text-[#3D3028] sm:text-3xl sm:tracking-[0.12em]">
+                <motion.div
+                  key={activeEvent}
+                  custom={eventDirection}
+                  variants={{
+                    enter: (direction: number) => ({
+                      opacity: 0,
+                      x: direction * 24,
+                    }),
+                    center: { opacity: 1, x: 0 },
+                    exit: (direction: number) => ({
+                      opacity: 0,
+                      x: direction * -24,
+                    }),
+                  }}
+                  initial="enter"
+                  animate="center"
+                  exit="exit"
+                  transition={{ duration: 0.28, ease: "easeInOut" }}
+                  id="invitation-event-panel"
+                  role="tabpanel"
+                  aria-labelledby={isWedding ? "event-tab-wedding" : "event-tab-vu-quy"}
+                  className="mx-auto mt-6 max-w-md"
+                >
+                  <h3 className="font-serif text-xl tracking-[0.1em] text-[#3D3028] sm:text-3xl sm:tracking-[0.12em]">
                   {event.title}
                   {event.time && (
                     <span className="mt-1 block text-sm tracking-normal text-[#6E5343]">
@@ -322,7 +348,8 @@ export function InvitationSection() {
                       : content.copyAddress}
                   </button>
                 </div>
-              </div>
+                </motion.div>
+              </AnimatePresence>
             </div>
 
             {/* Calendar CTA */}

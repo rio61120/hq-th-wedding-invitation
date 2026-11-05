@@ -5,7 +5,7 @@ import { FloralBranchDivider } from "./Decorations";
 const giftQrs = [
   {
     title: "Chú Rể: Hồng Quân",
-    src: "/QRs/chu_re_QR.jpg",
+    src: "/QRs/chu_re_QR_cropped.png",
     alt: "Mã QR mừng cưới chú rể Hồng Quân",
   },
   {

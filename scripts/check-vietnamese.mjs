@@ -21,8 +21,8 @@ try {
     }
     assert.equal(await page.getByRole('tab').count(), 2, 'Invitation event tabs are available');
     assert.match(await page.locator('#invitation').innerText(), /LỄ THÀNH HÔN/);
-    await page.getByRole('tab', { name: 'Nạp tài thành vu quy', exact: true }).click();
-    assert.match(await page.locator('#invitation').innerText(), /NẠP TÀI THÀNH VU QUY/);
+    await page.getByRole('tab', { name: 'Nạp tài vu quy', exact: true }).click();
+    assert.match(await page.locator('#invitation').innerText(), /NẠP TÀI VU QUY/);
     assert.match(await page.locator('#invitation').innerText(), /Phường Bách Quang, Thái Nguyên/);
     assert.match(await page.getByRole('link', { name: 'Chỉ đường' }).getAttribute('href'), /21%C2%B030/);
     await page.getByRole('tab', { name: 'Lễ thành hôn', exact: true }).click();
