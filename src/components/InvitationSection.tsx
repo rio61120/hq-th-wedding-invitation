@@ -162,14 +162,14 @@ export function InvitationSection() {
             </div>
 
             {/* Parents Information */}
-            <div className="grid grid-cols-2 gap-6 pt-6 text-xs sm:text-sm text-[#5A4537] max-w-xl mx-auto border-t border-[#BCA89F]/20">
+            <div className="mx-auto grid max-w-xl grid-cols-1 gap-4 border-t border-[#BCA89F]/20 pt-6 text-xs text-[#5A4537] min-[380px]:grid-cols-2 sm:gap-6 sm:text-sm">
               <div className="space-y-1">
                 <p className="font-medium uppercase tracking-wider text-[#8B6F5D] text-[11px]">
                   {content.groomSide}
                 </p>
-                <p className="font-serif text-base text-[#3D3028]">
-                  <span className="block">{content.groomFather}</span>
-                  <span className="block">{content.groomMother}</span>
+                <p className="font-serif text-sm text-[#3D3028] min-[380px]:text-xs sm:text-base">
+                  <span className="block whitespace-nowrap">{content.groomFather}</span>
+                  <span className="block whitespace-nowrap">{content.groomMother}</span>
                 </p>
                 <p className="text-[11px] text-[#8B6F5D]">
                   {content.groomAddress}
@@ -180,9 +180,9 @@ export function InvitationSection() {
                 <p className="font-medium uppercase tracking-wider text-[#8B6F5D] text-[11px]">
                   {content.brideSide}
                 </p>
-                <p className="font-serif text-base text-[#3D3028]">
-                  <span className="block">{content.brideFather}</span>
-                  <span className="block">{content.brideMother}</span>
+                <p className="font-serif text-sm text-[#3D3028] min-[380px]:text-xs sm:text-base">
+                  <span className="block whitespace-nowrap">{content.brideFather}</span>
+                  <span className="block whitespace-nowrap">{content.brideMother}</span>
                 </p>
                 <p className="text-[11px] text-[#8B6F5D]">
                   {content.brideAddress}
