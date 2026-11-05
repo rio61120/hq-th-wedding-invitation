@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'motion/react';
 import { MailOpen, Pause, Play } from 'lucide-react';
-import { MonogramHQ } from './Decorations';
+import { FloralBranchDivider, MonogramHQ } from './Decorations';
 
 const photos = [
   '/images/optimized/wedding-18.webp',
@@ -68,7 +68,7 @@ export function InvitationCover({
 
   return (
     <motion.main
-      className="fixed inset-0 z-[100] flex items-end justify-center bg-[#241a16]/55 px-0 pt-8 backdrop-blur-[3px] sm:px-5"
+      className="fixed inset-0 z-[100] bg-[#FAF7F2]"
       role="dialog"
       aria-modal="true"
       aria-labelledby="personal-invitation-title"
@@ -76,7 +76,7 @@ export function InvitationCover({
       transition={{ duration: 0.55, delay: isOpening ? 0.2 : 0 }}
     >
       <motion.section
-        className="relative flex h-[92dvh] max-h-[900px] w-full max-w-2xl flex-col overflow-hidden rounded-t-[2rem] rounded-b-none border border-b-0 border-white/70 bg-[#FAF7F2] shadow-[0_-18px_70px_rgba(31,20,14,0.35)] sm:h-[90dvh] sm:rounded-t-[2rem]"
+        className="relative flex h-[100dvh] w-full flex-col overflow-hidden rounded-none bg-[#FAF7F2]"
         aria-label="Thiệp mời cưới"
       >
         <motion.div
@@ -116,13 +116,15 @@ export function InvitationCover({
         </motion.div>
 
         <motion.div
-          className="relative flex min-h-[250px] flex-[2] flex-col items-center justify-center overflow-y-auto px-5 py-4 text-center sm:px-10 sm:py-6"
+          className="relative flex min-h-0 flex-[2] flex-col items-center justify-center overflow-y-auto px-5 py-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))] text-center sm:px-10 sm:py-4"
           animate={isOpening ? { y: '110%' } : { y: 0 }}
           transition={{ duration: 0.72, ease: [0.76, 0, 0.24, 1] }}
         >
           <MonogramHQ className="mb-2 h-10 w-10 sm:mb-3 sm:h-12 sm:w-12" />
-          <h1 className="font-serif text-2xl tracking-wide text-[#4B3528] sm:text-3xl" id="personal-invitation-title">
-            Hồng Quân <span className="text-[#A77A5D]">&amp;</span> Thương Huyền
+          <h1 className="leading-none" id="personal-invitation-title">
+            <span className="block font-script text-4xl text-[#3D3028] sm:text-6xl">Hồng Quân</span>
+            <span className="my-0.5 block font-serif text-xl italic font-light text-[#8B6F5D] sm:text-2xl">&amp;</span>
+            <span className="block font-script text-4xl text-[#3D3028] sm:text-6xl">Thương Huyền</span>
           </h1>
           <p className="mt-2 text-[10px] font-medium uppercase tracking-[0.28em] text-[#98735D] sm:text-xs">
             Trân trọng kính mời
@@ -137,8 +139,9 @@ export function InvitationCover({
             className="mt-4 inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-[#8B6F5D] px-7 py-3 text-sm font-medium text-white shadow-[0_8px_22px_rgba(91,66,49,0.22)] transition hover:bg-[#745744] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#8B6F5D] disabled:cursor-wait sm:mt-5"
           >
             <MailOpen aria-hidden="true" className="h-4 w-4" />
-            Mở phong thư
+            Xem thiệp
           </button>
+          <FloralBranchDivider className="mt-2 h-auto w-40 opacity-90 sm:mt-3 sm:w-56" />
         </motion.div>
       </motion.section>
     </motion.main>
