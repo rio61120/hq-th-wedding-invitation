@@ -35,9 +35,11 @@ const photos = [
 export function InvitationCover({
   invitedName,
   onOpen,
+  onStartOpen,
 }: {
   invitedName: string;
   onOpen: () => void;
+  onStartOpen: () => void;
 }) {
   const [activePhoto, setActivePhoto] = useState(0);
   const [isPlaying, setIsPlaying] = useState(true);
@@ -135,7 +137,10 @@ export function InvitationCover({
           <button
             type="button"
             disabled={isOpening}
-            onClick={() => setIsOpening(true)}
+            onClick={() => {
+              setIsOpening(true);
+              onStartOpen();
+            }}
             className="mt-6 inline-flex min-h-12 shrink-0 items-center justify-center gap-2 rounded-full bg-[#8B6F5D] px-7 py-3 text-sm font-medium text-white shadow-[0_8px_22px_rgba(91,66,49,0.22)] transition hover:bg-[#745744] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#8B6F5D] disabled:cursor-wait sm:mt-7"
           >
             <MailOpen aria-hidden="true" className="h-4 w-4" />

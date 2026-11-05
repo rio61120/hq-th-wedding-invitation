@@ -180,6 +180,7 @@ export default function App({ invitedName }: { invitedName: string | null }) {
       <InvitationCover
         invitedName={invitedName}
         onOpen={() => setHasOpenedInvite(true)}
+        onStartOpen={() => musicRef.current?.play()}
       />
     )}
     </div>
