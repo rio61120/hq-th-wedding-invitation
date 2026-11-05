@@ -42,40 +42,6 @@ export function StorySection() {
                   decoding="async"
                 />
               </div>
-
-              {/* Inset square photo 1 */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.2, duration: 0.6 }}
-                className="absolute -bottom-6 -left-4 w-32 sm:w-36 aspect-square rounded-2xl overflow-hidden shadow-2xl border-4 border-white"
-              >
-                <img
-                  src="/images/optimized/wedding-1.webp"
-                  alt="Hồng Quân và Thương Huyền bên đài phun nước"
-                  className="w-full h-full object-cover"
-                  loading="lazy"
-                  decoding="async"
-                />
-              </motion.div>
-
-              {/* Inset square photo 2 */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.3, duration: 0.6 }}
-                className="absolute -bottom-6 -right-4 w-28 sm:w-32 aspect-square rounded-2xl overflow-hidden shadow-2xl border-4 border-white"
-              >
-                <img
-                  src="/images/optimized/wedding-19.webp"
-                  alt="Hồng Quân và Thương Huyền cùng khăn voan bay trong vườn"
-                  className="w-full h-full object-cover"
-                  loading="lazy"
-                  decoding="async"
-                />
-              </motion.div>
             </div>
           </motion.div>
 
