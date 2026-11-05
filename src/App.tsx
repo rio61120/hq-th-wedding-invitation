@@ -15,14 +15,16 @@ import { RsvpSection } from './components/RsvpSection';
 import { ClosingSection } from './components/ClosingSection';
 import { MusicPlayer, MusicPlayerHandle } from './components/MusicPlayer';
 import { FallingPetals } from './components/FallingPetals';
+import { InvitationCover } from './components/InvitationCover';
 
-export default function App() {
+export default function App({ invitedName }: { invitedName: string | null }) {
   const [autoScroll, setAutoScroll] = useState(true);
+  const [hasOpenedInvite, setHasOpenedInvite] = useState(!invitedName);
   const startImmediately = useRef(false);
   const musicRef = useRef<MusicPlayerHandle | null>(null);
 
   useEffect(() => {
-    if (!autoScroll) return;
+    if (!autoScroll || (invitedName && !hasOpenedInvite)) return;
 
     let animationFrame = 0;
     let scrollActive = true;
@@ -87,7 +89,7 @@ export default function App() {
       window.removeEventListener('touchmove', cancel);
       window.removeEventListener('keydown', cancelForKey);
     };
-  }, [autoScroll]);
+  }, [autoScroll, hasOpenedInvite, invitedName]);
 
   const scrollToInvitation = () => {
     const el = document.getElementById('invitation');
@@ -105,7 +107,10 @@ export default function App() {
 
   return (
     <MotionConfig reducedMotion="user">
+    <div className="relative">
     <div
+      aria-hidden={Boolean(invitedName && !hasOpenedInvite)}
+      inert={Boolean(invitedName && !hasOpenedInvite)}
       className="min-h-screen bg-[#FAF7F2] text-[#3D3028] relative selection:bg-[#D5C2B4] selection:text-[#2B221B] font-sans antialiased overflow-x-hidden"
       onClickCapture={(event) => {
         if ((event.target as HTMLElement).closest('a[href^="#"], main button, #mobile-menu, button[aria-controls="mobile-menu"]')) {
@@ -170,6 +175,13 @@ export default function App() {
 
       {/* Nhạc nền dương cầm đám cưới kinh điển */}
       <MusicPlayer ref={musicRef} />
+    </div>
+    {invitedName && !hasOpenedInvite && (
+      <InvitationCover
+        invitedName={invitedName}
+        onOpen={() => setHasOpenedInvite(true)}
+      />
+    )}
     </div>
     </MotionConfig>
   );
